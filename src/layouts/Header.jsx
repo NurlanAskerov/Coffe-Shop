@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, ShoppingBag, X } from 'lucide-react';
 import { useState } from 'react';

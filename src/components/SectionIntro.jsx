@@ -1,3 +1,4 @@
+import React from 'react';
 export default function SectionIntro({ eyebrow, title, text }) {
   return (
     <div className="section-intro">

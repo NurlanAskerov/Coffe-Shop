@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import PageTransition from '../components/PageTransition';

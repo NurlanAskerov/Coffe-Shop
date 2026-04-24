@@ -1,3 +1,4 @@
+import React from 'react';
 import PageTransition from '../components/PageTransition';
 import { useCart } from '../context/CartContext';
 import { formatPrice } from '../utils/formatPrice';
