@@ -8,6 +8,7 @@ export default function ProductCard({ product }) {
 
   const handleAdd = (event) => {
     event.preventDefault();
+    event.stopPropagation();
     addToCart(product);
   };
 

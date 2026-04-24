@@ -1,12 +1,21 @@
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CheckCircle2, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export default function CartToast() {
   const { notices, closeNotice } = useCart();
+  const [mounted, setMounted] = useState(false);
 
-  return (
-    <div className="toast-stack" aria-live="polite" aria-atomic="true">
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="toast-stack" role="status" aria-live="polite" aria-atomic="true">
       <AnimatePresence initial={false}>
         {notices.map((notice) => (
           <motion.article
@@ -28,6 +37,7 @@ export default function CartToast() {
           </motion.article>
         ))}
       </AnimatePresence>
-    </div>
+    </div>,
+    document.body
   );
 }
