@@ -1,4 +1,3 @@
-import React from 'react';
 import PageTransition from '../components/PageTransition';
 import ProductCard from '../components/ProductCard';
 import SectionIntro from '../components/SectionIntro';

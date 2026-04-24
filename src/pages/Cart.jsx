@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
@@ -26,18 +25,20 @@ export default function Cart() {
             <div className="cart-list">
               {items.map((item) => (
                 <article className="cart-item" key={item.id}>
-                  <img src={item.image} alt={item.name} />
-                  <div>
+                  <img className="cart-item-image" src={item.image} alt={item.name} />
+                  <div className="cart-item-info">
                     <h3>{item.name}</h3>
-                    <p>{formatPrice(item.price)}</p>
+                    <p>{formatPrice(item.price)} / ədəd</p>
                   </div>
-                  <div className="quantity-control">
-                    <button onClick={() => changeQuantity(item.id, item.quantity - 1)}><Minus size={15} /></button>
-                    <span>{item.quantity}</span>
-                    <button onClick={() => changeQuantity(item.id, item.quantity + 1)}><Plus size={15} /></button>
+                  <div className="cart-item-actions">
+                    <div className="quantity-control" aria-label={`${item.name} sayı`}>
+                      <button type="button" onClick={() => changeQuantity(item.id, item.quantity - 1)} aria-label="Sayını azalt"><Minus size={15} /></button>
+                      <span>{item.quantity}</span>
+                      <button type="button" onClick={() => changeQuantity(item.id, item.quantity + 1)} aria-label="Sayını artır"><Plus size={15} /></button>
+                    </div>
+                    <strong className="cart-item-total">{formatPrice(item.price * item.quantity)}</strong>
+                    <button className="remove-button" type="button" onClick={() => removeFromCart(item.id)} aria-label="Məhsulu səbətdən sil"><Trash2 size={18} /></button>
                   </div>
-                  <strong>{formatPrice(item.price * item.quantity)}</strong>
-                  <button className="remove-button" onClick={() => removeFromCart(item.id)}><Trash2 size={18} /></button>
                 </article>
               ))}
             </div>

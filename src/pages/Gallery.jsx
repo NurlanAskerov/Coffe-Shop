@@ -1,4 +1,3 @@
-import React from 'react';
 import PageTransition from '../components/PageTransition';
 import SectionIntro from '../components/SectionIntro';
 import { galleryImages } from '../data/gallery';

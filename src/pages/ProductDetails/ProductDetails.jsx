@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronLeft, ShoppingBag, Star } from 'lucide-react';
 import PageTransition from '../../components/PageTransition';

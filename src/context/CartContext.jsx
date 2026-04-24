@@ -1,10 +1,28 @@
-import React from 'react';
 import { createContext, useContext, useMemo, useState } from 'react';
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);
+  const [notices, setNotices] = useState([]);
+
+  const pushNotice = (product) => {
+    const notice = {
+      id: `${product.id}-${Date.now()}`,
+      title: 'Səbətə əlavə olundu',
+      message: `${product.name} sifariş səbətinə əlavə edildi.`,
+      image: product.image
+    };
+
+    setNotices((current) => [notice, ...current].slice(0, 3));
+    window.setTimeout(() => {
+      setNotices((current) => current.filter((item) => item.id !== notice.id));
+    }, 3200);
+  };
+
+  const closeNotice = (noticeId) => {
+    setNotices((current) => current.filter((item) => item.id !== noticeId));
+  };
 
   const addToCart = (product) => {
     setItems((current) => {
@@ -14,6 +32,7 @@ export function CartProvider({ children }) {
       }
       return [...current, { ...product, quantity: 1 }];
     });
+    pushNotice(product);
   };
 
   const removeFromCart = (productId) => {
@@ -31,7 +50,7 @@ export function CartProvider({ children }) {
   const count = useMemo(() => items.reduce((sum, item) => sum + item.quantity, 0), [items]);
 
   return (
-    <CartContext.Provider value={{ items, addToCart, removeFromCart, changeQuantity, clearCart, total, count }}>
+    <CartContext.Provider value={{ items, notices, addToCart, removeFromCart, changeQuantity, clearCart, total, count, closeNotice }}>
       {children}
     </CartContext.Provider>
   );

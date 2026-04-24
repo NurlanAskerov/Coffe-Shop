@@ -1,4 +1,3 @@
-import React from 'react';
 import InstagramIcon from '../components/InstagramIcon';
 import { brand } from '../data/site';
 
